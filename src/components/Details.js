@@ -15,6 +15,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { DELETE_USER } from './queries';
+import LogoutBtn from './LogoutBtn';
 
 const Details = () => {
   const userData = JSON.parse(localStorage.getItem('userData'));
@@ -78,10 +79,16 @@ const Details = () => {
               </Tr>
             </Tbody>
           </Table>
-
-          <Button colorScheme="red" variant="solid" onClick={handleRemoveUser}>
-            Delete
-          </Button>
+          <Stack direction="row" spacing={4}>
+            <Button
+              colorScheme="red"
+              variant="solid"
+              onClick={handleRemoveUser}
+            >
+              Delete
+            </Button>
+            <LogoutBtn />
+          </Stack>
         </>
       )}
     </Container>
