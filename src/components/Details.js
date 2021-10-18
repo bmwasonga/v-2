@@ -13,10 +13,26 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { DELETE_USER } from './queries';
 
 const Details = () => {
   const userData = JSON.parse(localStorage.getItem('userData'));
 
+  const [removeUser] = useMutation(DELETE_USER);
+
+  const handleRemoveUser = () => {
+    const userId = userData.loginUser.user.id;
+
+    removeUser({
+      variables: { input: { userId } },
+      update(cache) {
+        const normalizedId = cache.identify({ userId, __typename: 'User' });
+        cache.evict({ userId: normalizedId });
+        cache.gc();
+      },
+    });
+  };
   return (
     <Container>
       {!userData ? (
@@ -62,6 +78,10 @@ const Details = () => {
               </Tr>
             </Tbody>
           </Table>
+
+          <Button colorScheme="red" variant="solid" onClick={handleRemoveUser}>
+            Delete
+          </Button>
         </>
       )}
     </Container>
