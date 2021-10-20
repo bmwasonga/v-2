@@ -36,7 +36,7 @@ const Details = () => {
   };
   return (
     <Container>
-      {!userData &&  userData === null (
+      {!userData && userData === null ? (
         <>
           <Heading>No data to display </Heading>
           <Text>Click here to login</Text>
