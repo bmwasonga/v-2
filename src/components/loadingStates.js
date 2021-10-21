@@ -23,7 +23,7 @@ export const Failure = ({ error }) => {
   if (error) {
     return (
       <p>
-        ERROR: {error.message}
+        The error is: {error.message}
         {toast({
           title: `error toast`,
           status: error,

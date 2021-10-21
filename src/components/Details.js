@@ -36,12 +36,14 @@ const Details = () => {
   };
   return (
     <Container>
-      {!userData && userData === null ? (
+      {!userData ? (
         <>
-          <Heading>No data to display </Heading>
-          <Text>Click here to login</Text>
+          <Heading as="h3" size="lg">
+            There is no data to display{' '}
+          </Heading>
+          <Text p="3">Please choose one to continue</Text>
 
-          <Stack direction="row" spacing={4}>
+          <Stack direction="row" spacing={4} p="2">
             <Button colorScheme="teal" variant="solid">
               <Link to="signin">SignIn</Link>
             </Button>

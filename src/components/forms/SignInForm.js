@@ -12,6 +12,7 @@ import {
   InputGroup,
   Stack,
   InputRightElement,
+  useToast,
 } from '@chakra-ui/react';
 
 import { Link, useHistory } from 'react-router-dom';
@@ -23,6 +24,7 @@ import { LOGIN_USER } from '../queries';
 import { Loading, Failure } from '../loadingStates';
 
 const SignInForm = () => {
+  const toast = useToast();
   const history = useHistory();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -38,12 +40,12 @@ const SignInForm = () => {
     try {
       await login({ variables: { input: { ...data } } });
     } catch (error) {
-      console.log('Error is: ', error);
+      console.log('this is the error message ', error);
     }
   };
 
   if (loading) return <Loading loading={loading} />;
-  if (error) return <Failure error={error} />;
+  if (error) return <Failure error={error.message} />;
   if (data) {
     console.log('my sign in data is', data);
     localStorage.setItem('userData', JSON.stringify(data));
