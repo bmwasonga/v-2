@@ -6,6 +6,7 @@ const LogoutBtn = () => {
   const history = useHistory();
   const handleClick = () => {
     localStorage.removeItem('userData');
+    localStorage.removeItem('auth-token');
     history.push('/');
   };
 

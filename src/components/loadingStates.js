@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Spinner, useToast } from '@chakra-ui/react';
+import { Spinner, useToast, Text } from '@chakra-ui/react';
 
-export const Loading = ({ loading }) => {
+export const Loading = ({ loading, text }) => {
   if (loading) {
     return (
       <SpinnerContainer>
@@ -12,7 +12,8 @@ export const Loading = ({ loading }) => {
           emptyColor="gray.200"
           color="blue.500"
           size="xl"
-        />{' '}
+        />
+        <Text>Redirecting to{text}</Text>
       </SpinnerContainer>
     );
   }

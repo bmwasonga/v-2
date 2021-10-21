@@ -22,9 +22,9 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../queries';
 import { Loading, Failure } from '../loadingStates';
+import { AUTH_TOKEN } from '../../constants';
 
 const SignInForm = () => {
-  const toast = useToast();
   const history = useHistory();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -38,17 +38,22 @@ const SignInForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      await login({ variables: { input: { ...data } } });
+      await login({
+        variables: { input: { ...data } },
+      });
     } catch (error) {
       console.log('this is the error message ', error);
     }
   };
 
-  if (loading) return <Loading loading={loading} />;
+  if (loading) return <Loading loading={loading} text={'sign in page'} />;
   if (error) return <Failure error={error.message} />;
   if (data) {
-    console.log('my sign in data is', data);
+    // console.log('my sign in data is', data);
     localStorage.setItem('userData', JSON.stringify(data));
+
+    localStorage.setItem(AUTH_TOKEN, data.loginUser.token);
+    console.log(AUTH_TOKEN);
     history.push('/');
   }
 

@@ -35,7 +35,7 @@ const Details = () => {
     });
   };
   return (
-    <Container>
+    <Container bg={'gray.100'} p="4" centerContent>
       {!userData ? (
         <>
           <Heading as="h3" size="lg">

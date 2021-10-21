@@ -51,11 +51,10 @@ const SignUpForm = () => {
     }
   };
 
-  if (loading) return <Loading loading={loading} />;
+  if (loading) return <Loading loading={loading} text={'sign in page'} />;
   if (error) return <Failure error={error} />;
   if (data) {
-    localStorage.setItem('LoginData', data);
-    // setData(data);
+    history.push('/signin');
   }
 
   console.log('sign in', data);
