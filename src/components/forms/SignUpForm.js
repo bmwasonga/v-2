@@ -40,7 +40,9 @@ const SignUpForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      await login({ variables: { input: { ...data } } });
+      await login({
+        variables: { input: { ...data } },
+      });
       toast({
         title: `Signup success`,
         status: 'success',

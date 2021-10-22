@@ -22,10 +22,10 @@ const Details = () => {
 
   const [removeUser] = useMutation(DELETE_USER);
 
-  const handleRemoveUser = () => {
+  const handleRemoveUser = async () => {
     const userId = userData.loginUser.user.id;
 
-    removeUser({
+    await removeUser({
       variables: { input: { userId } },
       update(cache) {
         const normalizedId = cache.identify({ userId, __typename: 'User' });

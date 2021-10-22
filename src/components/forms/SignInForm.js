@@ -53,7 +53,6 @@ const SignInForm = () => {
     localStorage.setItem('userData', JSON.stringify(data));
 
     localStorage.setItem(AUTH_TOKEN, data.loginUser.token);
-    console.log(AUTH_TOKEN);
     history.push('/');
   }
 

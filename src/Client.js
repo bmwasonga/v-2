@@ -5,6 +5,7 @@ import { AUTH_TOKEN } from './constants';
 
 const httpLink = createHttpLink({
   uri: 'https://graphql-user-api.herokuapp.com/graphql',
+  credentials: 'same-origin',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -13,7 +14,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      Authorization: token ? `${token}` : '',
     },
   };
 });
